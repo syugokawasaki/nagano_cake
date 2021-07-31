@@ -1,1 +1,18 @@
 <h1>ジャンル管理画面</h1>
+
+
+<h4>ジャンル一覧</h4>
+<% @genres.each do |f| %>
+  <p><%= f.name %></p><p><%= link_to '編集', edit_admin_genre_path(f.id) %></p>
+<% end %>
+
+
+
+<h1>ジャンル新規投稿画面</h1>
+<%= form_with model: @genre, url: admin_genres_path, local:true do |f| %>
+  <h4>ジャンル名</h4>
+  <%= f.text_field :name %>
+  <%= f.submit '登録' %>
+<% end %>
+
+
