@@ -1,4 +1,4 @@
 class OrderDetail < ApplicationRecord
   belongs_to :order
-  has_many :items, dependent: :destroy
+  belongs_to :item
 end

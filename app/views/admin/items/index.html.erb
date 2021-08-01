@@ -1,0 +1,29 @@
+<h1>商品一覧</h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>商品画像</th>
+      <th>商品名</th>
+      <th>ジャンル</th>
+      <th>商品説明文</th>
+      <th>価格</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @items.each do |f| %>
+      <td><%= attachment_image_tag f, :image, :fill, 100, 100, format: 'jpeg' %></td>
+      <td><%= f.name %></td>
+      <td><%= f.genre.name %></td>
+      <td><%= f.introduction %></td>
+      <td><%= f.price %>円</td>
+      <td><%= link_to '詳細', admin_item_path(f) %></td>
+    </tr>
+      <% end %>
+  </tbody>
+</table>
+
+
