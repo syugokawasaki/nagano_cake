@@ -1,5 +1,5 @@
 <h1>会員一覧</h1>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>会員ID</th>
@@ -10,9 +10,14 @@
   </thead>
   <tbody>
     <tr>
-      <% @customer.each do |f| %>
+      <% @customers.each do |f| %>
       <td><%= f.id %></td>
-      <td><%= f.last_name %><%= f.first_name %></td>
+      <td>
+        <%= link_to admin_customer_path(f) do %>
+        <%= f.last_name %>
+        <%= f.first_name %>
+        <% end %>
+      </td>
       <td><%= f.email %></td>
       <td><%= f.is_active %></td>
     </tr>

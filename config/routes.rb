@@ -2,13 +2,22 @@ Rails.application.routes.draw do
   root to: 'public/homes#top'
   get 'about' => 'public/homes#about'
 
-  devise_for :customers
+  get 'customers/my_page' => 'public/customers#show'
+  get 'customers' => 'public/customers#edit'
+  patch 'customers' => 'public/customers#update'
 
-
+  devise_for :customers, controllers:{
+    registrations: 'public/customers/registrations',
+    sessions: 'public/customers/sessions'
+  }
 
   devise_for :admin, controllers:{
     sessions: 'admin/sessions'
   }
+
+
+
+
 
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
