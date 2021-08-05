@@ -1,0 +1,11 @@
+<h2>商品一覧</h2><p>全<%= @item_count %>件</p>
+
+<% @items.each do |f| %>
+
+  <%= link_to item_path(f) do %>
+    <%= attachment_image_tag f, :image, :fill, 250, 150, format: 'jpeg' %>
+    <p><%= f.name %></p>
+  <% end %>
+    <p>¥<%= f.price %></p>
+
+<% end %>

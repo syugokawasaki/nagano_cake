@@ -5,6 +5,15 @@ Rails.application.routes.draw do
   get 'customers/my_page' => 'public/customers#show'
   get 'customers' => 'public/customers#edit'
   patch 'customers' => 'public/customers#update'
+  get 'customers/unsubscribe' => 'public/customers#unsubscribe'
+  patch 'customers/withdraw' => 'public/customers#withdraw'
+
+  scope module: :public do
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :items, only: [:index, :show]
+  end
+
+
 
   devise_for :customers, controllers:{
     registrations: 'public/customers/registrations',
@@ -14,9 +23,6 @@ Rails.application.routes.draw do
   devise_for :admin, controllers:{
     sessions: 'admin/sessions'
   }
-
-
-
 
 
   namespace :admin do
