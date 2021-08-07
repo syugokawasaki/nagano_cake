@@ -3,3 +3,8 @@
 <p><%= @item.name %></p>
 <p><%= @item.introduction %></p>
 <p><%= @item.price %></p>
+<%= form_with model:@cart_item, url: cart_items_path, local: true do |f| %>
+  <%= f.select :amount, [['1', 1], ['2', 2], ['3', 3]] %>
+  <%= f.hidden_field :item_id, :value => @item.id %>
+  <p><%= f.submit 'カートに入れる' %></p>
+<% end %>

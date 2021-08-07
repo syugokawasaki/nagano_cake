@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   patch 'customers' => 'public/customers#update'
   get 'customers/unsubscribe' => 'public/customers#unsubscribe'
   patch 'customers/withdraw' => 'public/customers#withdraw'
+  delete 'cart_items/destroy_all' => 'public/cart_items#destroy_all'
 
   scope module: :public do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :update, :create, :destroy]
   end
 
 

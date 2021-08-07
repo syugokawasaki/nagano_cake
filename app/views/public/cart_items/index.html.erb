@@ -1,0 +1,34 @@
+<h3>ショッピングカート</h3>
+
+<h2><%= link_to 'カートを空にする', cart_items_destroy_all_path, method: :delete %></h2>
+<table>
+  <tr>
+    <th>商品名</th>
+    <th>単価</th>
+    <th>数量</th>
+    <th>小計</th>
+    <th></th>
+  </tr>
+  <% @sum = 0 %>
+  <% @cart_items.each do |f| %>
+  <tr>
+    <td>
+      <%= attachment_image_tag f.item, :image, :fill, 100, 50, format: 'jpeg' %>
+      <%= f.item.name %>
+    </td>
+    <td><%= f.item.price %></td>
+    <%= form_with model:@cart_items, url: cart_item_path(f), method: :patch, local: true do |a| %>
+    <td>
+      <%= a.select :amount, [['1', 1], ['2', 2], ['3', 3]], { selected: f.amount } %>
+      <%= a.submit '数量変更' %>
+    </td>
+    <% end %>
+    <td><%= f.amount * f.item.price %></td>
+    <td><%= link_to '削除する', cart_item_path(f), method: :delete %></td>
+  </tr>
+  <% @sum += f.item.price * f.amount %>
+  <% end %>
+</table>
+<table>
+  <tr><th>合計金額</th><td><%= @sum %></td></tr>
+</table>
